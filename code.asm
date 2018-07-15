@@ -1,5 +1,5 @@
 .model small 
-.stack100h
+.stack 100h
 
 .data
 a2 dw ?
@@ -8,7 +8,23 @@ v2 dw 124 dup(?)
 f2 dw 23 dup(?)
 
 .code
+main proc
+
+	mov ax , @data
+	mov ds ,ax
+
+	mov ax , 10
+	mov a2 , ax 
+	mov ax , a2
+	call IdPrint
+	mov dx , 0
+	mov ah,4ch
+	int 21h
+
+main endp
 IdPrint PROC 
+
+
 	push ax
 	push bx
 	push cx
@@ -44,14 +60,24 @@ print_loop:
 	ret
 IdPrint ENDP
 
-main proc
-	mov ax , @data
-	mov ds ,ax
 
-	mov ax , 10
-	mov a , ax 
-	mov ax , a
-	call IdPrint
-	mov ah,4ch
-	int 21h
-main endp
+func proc
+
+	push ax
+	push bx
+	push cx
+	push dx
+	mov dx , 2.0
+
+
+	pop dx
+	pop cx
+	pop bx
+	pop ax
+	ret
+func ENDP
+
+
+
+
+end main
