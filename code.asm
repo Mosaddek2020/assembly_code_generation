@@ -3,11 +3,12 @@
 
 .data
 ;all the variable declared in the c prog 
+x2 dw ?
 a2 dw ?
 b2 dw ?
-i2 dw ?
 ;all the temporary variable declared in the c prog 
 t0 dw ?
+t1 dw ?
 ;all the arrays declared in the c prog 
 
 .code
@@ -16,43 +17,14 @@ main proc
 	mov ax , @data
 	mov ds ,ax
 
-	mov ax , 0
-	mov b2 , ax 
-	mov ax , 0
-	mov i2 , ax 
-L4:
-	mov ax , i2
-	cmp ax , 4
-	jl L0
-	mov t0 , 0
-	jmp L1
-L0:
-	mov t0 , 1
-L1:
-	mov ax, t0
-	cmp ax, 0
-	je L5
-	mov ax , 3
+	mov ax , 1
 	mov a2 , ax 
-L2:
-	mov ax , a2
-	dec ax
-	mov a2 , ax
-	mov ax, a2
-	cmp ax, 0
-	je L3
-	mov ax , 11
+	mov ax , 2
 	mov b2 , ax 
-	jmp L2
-L3:
-	mov ax , i2
-	inc ax
-	mov i2 , ax
-	jmp L4
-L5:
+	call f
+	mov ax , 
+	mov a2 , ax 
 	mov ax , a2
-	call IdPrint
-	mov ax , b2
 	call IdPrint
 	mov dx , 0
 	mov ah,4ch
@@ -97,6 +69,53 @@ print_loop:
 	ret
 IdPrint ENDP
 
+
+f proc
+
+	push ax
+	push bx
+	push cx
+	push dx
+	mov ax ,2
+	mov bx , a0
+	mul bx 
+	mov t0 ,ax
+	mov dx , t0
+	mov ax , 9
+	mov a0 , ax 
+
+
+	pop dx
+	pop cx
+	pop bx
+	pop ax
+	ret
+f ENDP
+
+g proc
+
+	push ax
+	push bx
+	push cx
+	push dx
+	call f
+	mov ax , 
+	add ax , a0
+	mov t0 , ax
+	mov ax , t0
+	add ax , b0
+	mov t1 , ax
+	mov ax , t1
+	mov x2 , ax 
+	mov dx , x2
+
+
+	pop dx
+	pop cx
+	pop bx
+	pop ax
+	ret
+g ENDP
 
 
 
