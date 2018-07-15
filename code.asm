@@ -41,9 +41,8 @@ L2:
 	mov ax, a2
 	cmp ax, 0
 	je L3
-	mov ax , b2
-	add ax, 1
-	mov b2 , ax
+	mov ax , 11
+	mov b2 , ax 
 	jmp L2
 L3:
 	mov ax , i2
