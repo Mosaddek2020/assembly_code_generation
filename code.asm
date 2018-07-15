@@ -2,8 +2,14 @@
 .stack 100h
 
 .data
+;all the variable declared in the c prog 
 a2 dw ?
 b2 dw ?
+;all the temporary variable declared in the c prog 
+t0 dw ?
+t1 dw ?
+t2 dw ?
+;all the arrays declared in the c prog 
 c2 dw 3 dup(?)
 
 .code
@@ -29,12 +35,12 @@ main proc
 	mov ax , 1
 	cmp ax , 5
 	jl L0
-	mov t3 , 0
+	mov t0 , 0
 	jmp L1
 L0:
-	mov t3 , 1
+	mov t0 , 1
 L1:
-	mov ax , t3
+	mov ax , t0
 	mov b2 , ax 
 	mov bx ,0
 	add bx ,bx
@@ -46,12 +52,12 @@ L1:
 	mov ax ,b2
 	cmp ax , 0
 	je L2
-	mov t4, 1 
+	mov t0, 1 
 	jmp L3
 L2:
-	mov t4, 0 
+	mov t0, 0 
 L3:
-	mov ax, t4
+	mov ax, t0
 	cmp ax, 0
 	je L4
 	mov bx ,0
