@@ -20,7 +20,8 @@ main proc
 	mov b2 , ax 
 	mov ax , 0
 	mov i2 , ax 
-L4	mov ax , i2
+L4:
+	mov ax , i2
 	cmp ax , 4
 	jl L0
 	mov t0 , 0
@@ -33,13 +34,11 @@ L1:
 	je L5
 	mov ax , 3
 	mov a2 , ax 
+L2:
 	mov ax , a2
 	sub ax, 1
 	mov a2 , ax
-L2	mov ax , a2
-	sub ax, 1
-	mov a2 , ax
-L2	mov ax, a2
+	mov ax, a2
 	cmp ax, 0
 	je L3
 	mov ax , b2
@@ -50,6 +49,7 @@ L3:
 	mov ax , i2
 	add ax, 1
 	mov i2 , ax
+	jmp L4
 L5:
 	mov ax , a2
 	call IdPrint
