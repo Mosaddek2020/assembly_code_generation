@@ -5,12 +5,10 @@
 ;all the variable declared in the c prog 
 a2 dw ?
 b2 dw ?
+i2 dw ?
 ;all the temporary variable declared in the c prog 
 t0 dw ?
-t1 dw ?
-t2 dw ?
 ;all the arrays declared in the c prog 
-c2 dw 3 dup(?)
 
 .code
 main proc
@@ -18,61 +16,40 @@ main proc
 	mov ax , @data
 	mov ds ,ax
 
-	mov ax , 2
-	add ax , 3
-	mov t0 , ax
-	mov ax ,1
-	mov bx , t0
-	mul bx 
-	mov t1 ,ax
-	mov ax ,t1
-	mov bx , 3
-	xor dx , dx 
-	div bx 
-	mov t2 ,dx
-	mov ax , t2
-	mov a2 , ax 
-	mov ax , 1
-	cmp ax , 5
+	mov ax , 0
+	mov b2 , ax 
+	mov ax , 0
+	mov i2 , ax 
+L4	mov ax , i2
+	cmp ax , 4
 	jl L0
 	mov t0 , 0
 	jmp L1
 L0:
 	mov t0 , 1
 L1:
-	mov ax , t0
-	mov b2 , ax 
-	mov bx ,0
-	add bx ,bx
-	mov ax , 2
-	mov c2 , ax 
-	mov ax ,a2
-	cmp ax , 0
-	je L2
-	mov ax ,b2
-	cmp ax , 0
-	je L2
-	mov t0, 1 
-	jmp L3
-L2:
-	mov t0, 0 
-L3:
 	mov ax, t0
 	cmp ax, 0
-	je L4
-	mov bx ,0
-	add bx ,bx
-	mov ax , c2
+	je L5
+	mov ax , 3
+	mov a2 , ax 
+	mov ax , a2
+	sub ax, 1
+	mov a2 , ax
+L2	mov ax , a2
+	sub ax, 1
+	mov a2 , ax
+L2	mov ax, a2
+	cmp ax, 0
+	je L3
+	mov ax , b2
 	add ax, 1
-	mov c2 , ax
-	jmp L5
-L4:
-	mov bx ,0
-	add bx ,bx
-	mov bx ,1
-	add bx ,bx
-	mov ax , c2
-	mov c2 , ax 
+	mov b2 , ax
+	jmp L2
+L3:
+	mov ax , i2
+	add ax, 1
+	mov i2 , ax
 L5:
 	mov ax , a2
 	call IdPrint
