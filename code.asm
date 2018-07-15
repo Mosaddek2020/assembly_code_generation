@@ -36,7 +36,7 @@ L1:
 	mov a2 , ax 
 L2:
 	mov ax , a2
-	sub ax, 1
+	dec ax
 	mov a2 , ax
 	mov ax, a2
 	cmp ax, 0
@@ -46,7 +46,7 @@ L2:
 	jmp L2
 L3:
 	mov ax , i2
-	add ax, 1
+	inc ax
 	mov i2 , ax
 	jmp L4
 L5:
